@@ -1,0 +1,221 @@
+[2018-06-24 03:15:42] [class-ss-plugin.php:232] Received request to start generating a static archive
+[2018-06-24 03:15:42] [class-ss-archive-creation-job.php:61] Starting a job; no job is presently running
+[2018-06-24 03:15:42] [class-ss-archive-creation-job.php:62] Here's our task list: setup, fetch_urls, transfer_files_locally, wrapup
+[2018-06-24 03:15:42] [class-ss-archive-creation-job.php:76] Pushing first task to queue: setup
+[2018-06-24 03:15:45] [class-ss-archive-creation-job.php:105] Current task: setup
+[2018-06-24 03:15:45] [class-ss-archive-creation-job.php:120] Performing task: setup
+[2018-06-24 03:15:45] [class-ss-task.php:38] Status message: [setup] Setting up
+[2018-06-24 03:15:45] [class-ss-setup-task.php:23] Creating archive directory: C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\
+[2018-06-24 03:15:45] [class-ss-setup-task.php:57] Adding origin URL to queue: http://localhost/crack/
+[2018-06-24 03:15:46] [class-ss-setup-task.php:68] Adding additional URL to queue: http://localhost/crack/wp-includes/js/wp-emoji-release.min.js
+[2018-06-24 03:15:46] [class-ss-setup-task.php:99] Adding files from directory: C:\wamp\www\crack/wp-content/uploads/
+[2018-06-24 03:15:46] [class-ss-archive-creation-job.php:142] We've found our next task: fetch_urls
+[2018-06-24 03:15:46] [class-ss-archive-creation-job.php:105] Current task: fetch_urls
+[2018-06-24 03:15:46] [class-ss-archive-creation-job.php:120] Performing task: fetch_urls
+[2018-06-24 03:15:46] [class-ss-fetch-urls-task.php:37] Total pages: 2; Pages remaining: 2
+[2018-06-24 03:15:46] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/
+[2018-06-24 03:15:46] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:15:46] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810146-Rt5Quq.tmp
+[2018-06-24 03:15:48] [class-ss-url-fetcher.php:89] Filesize: 53405 bytes
+[2018-06-24 03:15:48] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: text/html; charset=UTF-8
+[2018-06-24 03:15:48] [class-ss-url-fetcher.php:180] New filename for static page: /index.html
+[2018-06-24 03:15:48] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810146-Rt5Quq.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/index.html
+[2018-06-24 03:15:48] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:15:49] [class-ss-url-extractor.php:139] /index.html
+[2018-06-24 03:15:49] [class-ss-url-extractor.php:139] /index.html
+[2018-06-24 03:15:49] [class-ss-fetch-urls-task.php:106] Adding 18 URLs to the queue
+[2018-06-24 03:15:50] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:15:50] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-includes/js/wp-emoji-release.min.js
+[2018-06-24 03:15:50] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:15:50] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:15:50] [class-ss-task.php:38] Status message: [fetch_urls] Fetched 0 of 2 pages/files
+[2018-06-24 03:15:51] [class-ss-archive-creation-job.php:147] We're not done with the fetch_urls task yet
+[2018-06-24 03:15:51] [class-ss-archive-creation-job.php:105] Current task: fetch_urls
+[2018-06-24 03:15:51] [class-ss-archive-creation-job.php:120] Performing task: fetch_urls
+[2018-06-24 03:15:51] [class-ss-fetch-urls-task.php:37] Total pages: 19; Pages remaining: 17
+[2018-06-24 03:15:51] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/2018/06/23/hello-world/
+[2018-06-24 03:15:51] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:15:51] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810151-Di58MT.tmp
+[2018-06-24 03:15:54] [class-ss-url-fetcher.php:89] Filesize: 57870 bytes
+[2018-06-24 03:15:54] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: text/html; charset=UTF-8
+[2018-06-24 03:15:54] [class-ss-url-fetcher.php:180] New filename for static page: /2018/06/23/hello-world/index.html
+[2018-06-24 03:15:54] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810151-Di58MT.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/2018/06/23/hello-world/index.html
+[2018-06-24 03:15:54] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:15:55] [class-ss-url-extractor.php:139] /2018/06/23/hello-world/index.html
+[2018-06-24 03:15:55] [class-ss-url-extractor.php:139] /2018/06/23/hello-world/index.html
+[2018-06-24 03:15:55] [class-ss-fetch-urls-task.php:106] Adding 23 URLs to the queue
+[2018-06-24 03:15:55] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:15:55] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/2018/06/
+[2018-06-24 03:15:55] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:15:55] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810155-YYmdsR.tmp
+[2018-06-24 03:15:57] [class-ss-url-fetcher.php:89] Filesize: 53187 bytes
+[2018-06-24 03:15:57] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: text/html; charset=UTF-8
+[2018-06-24 03:15:57] [class-ss-url-fetcher.php:180] New filename for static page: /2018/06/index.html
+[2018-06-24 03:15:57] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810155-YYmdsR.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/2018/06/index.html
+[2018-06-24 03:15:57] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:15:57] [class-ss-url-extractor.php:139] /2018/06/index.html
+[2018-06-24 03:15:58] [class-ss-url-extractor.php:139] /2018/06/index.html
+[2018-06-24 03:15:58] [class-ss-fetch-urls-task.php:106] Adding 18 URLs to the queue
+[2018-06-24 03:15:58] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:15:58] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/category/uncategorized/
+[2018-06-24 03:15:58] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:15:58] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810158-1qiGM1.tmp
+[2018-06-24 03:16:00] [class-ss-url-fetcher.php:89] Filesize: 50742 bytes
+[2018-06-24 03:16:00] [class-ss-url-fetcher.php:104] http_status_code: 404 | content_type: text/html; charset=UTF-8
+[2018-06-24 03:16:00] [class-ss-url-fetcher.php:123] We weren't able to establish a filename; deleting temp file
+[2018-06-24 03:16:00] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-login.php
+[2018-06-24 03:16:00] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .php DNS: 1 DNF: 1
+[2018-06-24 03:16:00] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:00] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/feed/
+[2018-06-24 03:16:00] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:16:00] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810160-rNkx6h.tmp
+[2018-06-24 03:16:01] [class-ss-url-fetcher.php:89] Filesize: 1637 bytes
+[2018-06-24 03:16:01] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: application/rss+xml; charset=UTF-8
+[2018-06-24 03:16:01] [class-ss-url-fetcher.php:180] New filename for static page: /feed/index.xml
+[2018-06-24 03:16:01] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810160-rNkx6h.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/feed/index.xml
+[2018-06-24 03:16:01] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:16:02] [class-ss-url-extractor.php:139] /feed/index.xml
+[2018-06-24 03:16:02] [class-ss-url-extractor.php:139] /feed/index.xml
+[2018-06-24 03:16:02] [class-ss-fetch-urls-task.php:106] Adding 5 URLs to the queue
+[2018-06-24 03:16:02] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:16:02] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/comments/feed/
+[2018-06-24 03:16:02] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:16:02] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810162-tupng5.tmp
+[2018-06-24 03:16:03] [class-ss-url-fetcher.php:89] Filesize: 1624 bytes
+[2018-06-24 03:16:03] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: application/rss+xml; charset=UTF-8
+[2018-06-24 03:16:03] [class-ss-url-fetcher.php:180] New filename for static page: /comments/feed/index.xml
+[2018-06-24 03:16:03] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810162-tupng5.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/comments/feed/index.xml
+[2018-06-24 03:16:03] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:16:03] [class-ss-url-extractor.php:139] /comments/feed/index.xml
+[2018-06-24 03:16:03] [class-ss-url-extractor.php:139] /comments/feed/index.xml
+[2018-06-24 03:16:03] [class-ss-fetch-urls-task.php:106] Adding 4 URLs to the queue
+[2018-06-24 03:16:03] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:16:03] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-content/themes/twentyseventeen/assets/images/header.jpg
+[2018-06-24 03:16:03] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .jpg DNS: 1 DNF: 1
+[2018-06-24 03:16:03] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-content/themes/twentyseventeen/style.css
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .css DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-json/
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/xmlrpc.php
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .php DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-task.php:38] Status message: [fetch_urls] Fetched 2 of 19 pages/files
+[2018-06-24 03:16:04] [class-ss-archive-creation-job.php:147] We're not done with the fetch_urls task yet
+[2018-06-24 03:16:04] [class-ss-archive-creation-job.php:105] Current task: fetch_urls
+[2018-06-24 03:16:04] [class-ss-archive-creation-job.php:120] Performing task: fetch_urls
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:37] Total pages: 25; Pages remaining: 13
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-includes/wlwmanifest.xml
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:16:04] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810164-IaxRQc.tmp
+[2018-06-24 03:16:04] [class-ss-url-fetcher.php:89] Filesize: 1045 bytes
+[2018-06-24 03:16:04] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: application/xml
+[2018-06-24 03:16:04] [class-ss-url-fetcher.php:180] New filename for static page: /wp-includes/wlwmanifest.xml
+[2018-06-24 03:16:04] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810164-IaxRQc.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/wp-includes/wlwmanifest.xml
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:16:04] [class-ss-url-extractor.php:139] /wp-includes/wlwmanifest.xml
+[2018-06-24 03:16:04] [class-ss-url-extractor.php:139] /wp-includes/wlwmanifest.xml
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:106] Adding 0 URLs to the queue
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-includes/js/jquery/jquery.js
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-includes/js/jquery/jquery-migrate.min.js
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-content/themes/twentyseventeen/assets/js/skip-link-focus-fix.js
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-content/themes/twentyseventeen/assets/js/global.js
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-content/themes/twentyseventeen/assets/js/jquery.scrollTo.js
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-includes/js/wp-embed.min.js
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/author/admin/
+[2018-06-24 03:16:04] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:16:04] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810164-MmeEWU.tmp
+[2018-06-24 03:16:06] [class-ss-url-fetcher.php:89] Filesize: 53378 bytes
+[2018-06-24 03:16:06] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: text/html; charset=UTF-8
+[2018-06-24 03:16:06] [class-ss-url-fetcher.php:180] New filename for static page: /author/admin/index.html
+[2018-06-24 03:16:06] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810164-MmeEWU.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/author/admin/index.html
+[2018-06-24 03:16:06] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:16:07] [class-ss-url-extractor.php:139] /author/admin/index.html
+[2018-06-24 03:16:07] [class-ss-url-extractor.php:139] /author/admin/index.html
+[2018-06-24 03:16:07] [class-ss-fetch-urls-task.php:106] Adding 19 URLs to the queue
+[2018-06-24 03:16:07] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:16:07] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-comments-post.php
+[2018-06-24 03:16:07] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .php DNS: 1 DNF: 1
+[2018-06-24 03:16:07] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:07] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/2018/06/23/hello-world/feed/
+[2018-06-24 03:16:07] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:16:07] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810167-C7oNpf.tmp
+[2018-06-24 03:16:09] [class-ss-url-fetcher.php:89] Filesize: 1642 bytes
+[2018-06-24 03:16:09] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: application/rss+xml; charset=UTF-8
+[2018-06-24 03:16:09] [class-ss-url-fetcher.php:180] New filename for static page: /2018/06/23/hello-world/feed/index.xml
+[2018-06-24 03:16:09] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810167-C7oNpf.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/2018/06/23/hello-world/feed/index.xml
+[2018-06-24 03:16:09] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:16:09] [class-ss-url-extractor.php:139] /2018/06/23/hello-world/feed/index.xml
+[2018-06-24 03:16:09] [class-ss-url-extractor.php:139] /2018/06/23/hello-world/feed/index.xml
+[2018-06-24 03:16:09] [class-ss-fetch-urls-task.php:106] Adding 3 URLs to the queue
+[2018-06-24 03:16:09] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:16:09] [class-ss-task.php:38] Status message: [fetch_urls] Fetched 12 of 25 pages/files
+[2018-06-24 03:16:09] [class-ss-archive-creation-job.php:147] We're not done with the fetch_urls task yet
+[2018-06-24 03:16:11] [class-ss-archive-creation-job.php:105] Current task: fetch_urls
+[2018-06-24 03:16:11] [class-ss-archive-creation-job.php:120] Performing task: fetch_urls
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:37] Total pages: 26; Pages remaining: 4
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-json/oembed/1.0/embed
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/wp-includes/js/comment-reply.min.js
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:46] Excludable found: URL: .js DNS: 1 DNF: 1
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:56] Skipping URL because it is no-save and no-follow
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:16:11] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810171-ZeZG8z.tmp
+[2018-06-24 03:16:11] [class-ss-url-fetcher.php:89] Filesize: 315 bytes
+[2018-06-24 03:16:11] [class-ss-url-fetcher.php:104] http_status_code: 301 | content_type: text/html; charset=iso-8859-1
+[2018-06-24 03:16:11] [class-ss-url-fetcher.php:123] We weren't able to establish a filename; deleting temp file
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:149] redirect_url: http://localhost/crack/
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:159] This is a redirect to a trailing slashed version of the same page; adding new URL to the queue
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:40] URL: http://localhost/crack/author/admin/feed/
+[2018-06-24 03:16:11] [class-ss-fetch-urls-task.php:50] URL is not being excluded
+[2018-06-24 03:16:11] [class-ss-url-fetcher.php:85] Fetching URL and saving it to: C:\WINDOWS\TEMP/1529810171-ZeyUdD.tmp
+[2018-06-24 03:16:13] [class-ss-url-fetcher.php:89] Filesize: 1664 bytes
+[2018-06-24 03:16:13] [class-ss-url-fetcher.php:104] http_status_code: 200 | content_type: application/rss+xml; charset=UTF-8
+[2018-06-24 03:16:13] [class-ss-url-fetcher.php:180] New filename for static page: /author/admin/feed/index.xml
+[2018-06-24 03:16:13] [class-ss-url-fetcher.php:120] Renaming temp file from C:\WINDOWS\TEMP/1529810171-ZeyUdD.tmp to C:\wamp\www\crack\wp-content\plugins\simply-static/static-files/simply-static-1-1529810142\/author/admin/feed/index.xml
+[2018-06-24 03:16:13] [class-ss-fetch-urls-task.php:99] Extracting URLs and replacing URLs in the static file
+[2018-06-24 03:16:13] [class-ss-url-extractor.php:139] /author/admin/feed/index.xml
+[2018-06-24 03:16:13] [class-ss-url-extractor.php:139] /author/admin/feed/index.xml
+[2018-06-24 03:16:13] [class-ss-fetch-urls-task.php:106] Adding 5 URLs to the queue
+[2018-06-24 03:16:13] [class-ss-fetch-urls-task.php:117] We're saving this URL; keeping the static file
+[2018-06-24 03:16:13] [class-ss-task.php:38] Status message: [fetch_urls] Fetched 22 of 26 pages/files
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:147] We're not done with the fetch_urls task yet
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:105] Current task: fetch_urls
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:120] Performing task: fetch_urls
+[2018-06-24 03:16:13] [class-ss-fetch-urls-task.php:37] Total pages: 26; Pages remaining: 0
+[2018-06-24 03:16:13] [class-ss-task.php:38] Status message: [fetch_urls] Fetched 26 of 26 pages/files
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:142] We've found our next task: transfer_files_locally
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:105] Current task: transfer_files_locally
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:120] Performing task: transfer_files_locally
+[2018-06-24 03:16:13] [class-ss-transfer-files-locally-task.php:64] Total pages: 9; Pages remaining: 9
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:147] We're not done with the transfer_files_locally task yet
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:105] Current task: transfer_files_locally
+[2018-06-24 03:16:13] [class-ss-archive-creation-job.php:120] Performing task: transfer_files_locally
+[2018-06-24 03:16:13] [class-ss-transfer-files-locally-task.php:64] Total pages: 9; Pages remaining: 0
+[2018-06-24 03:16:13] [class-ss-task.php:38] Status message: [transfer_files_locally] Copied 9 of 9 files
+[2018-06-24 03:16:14] [class-ss-task.php:38] Status message: [destination_url] Destination URL: <a href="http://localhost/crack/" target="_blank">http://localhost/crack/</a>
+[2018-06-24 03:16:14] [class-ss-archive-creation-job.php:142] We've found our next task: wrapup
+[2018-06-24 03:16:14] [class-ss-archive-creation-job.php:105] Current task: wrapup
+[2018-06-24 03:16:14] [class-ss-archive-creation-job.php:120] Performing task: wrapup
+[2018-06-24 03:16:14] [class-ss-wrapup-task.php:13] Deleting temporary files
+[2018-06-24 03:16:14] [class-ss-task.php:38] Status message: [wrapup] Wrapping up
+[2018-06-24 03:16:14] [class-ss-archive-creation-job.php:138] This task is done and there are no more tasks, time to complete the job
+[2018-06-24 03:16:14] [class-ss-archive-creation-job.php:161] Completing the job
+[2018-06-24 03:16:14] [class-ss-archive-creation-job.php:271] Status message: [done] Done! Finished in 00:00:32
