@@ -67,7 +67,7 @@ class Model {
 	 */
 	public function __get( $field_name ) {
 		if ( ! array_key_exists( $field_name, $this->data ) ) {
-			throw new \Exception( 'Undefined variable for ' . get_called_class() );
+			throw new \Exception( 'Undefined variable `' . $field_name . '` for ' . get_called_class() );
 		} else {
 			return $this->data[ $field_name ];
 		}

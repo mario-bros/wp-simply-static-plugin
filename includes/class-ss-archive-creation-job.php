@@ -229,7 +229,7 @@ class Archive_Creation_Job extends \WP_Background_Process {
 
 	/**
 	 * Set the current task name
-	 * @param stroing $task_name The name of the current task
+	 * @param string $task_name The name of the current task
 	 */
 	protected function set_current_task( $task_name ) {
 		$this->current_task = $task_name;

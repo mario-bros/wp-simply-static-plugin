@@ -94,7 +94,7 @@ class Fetch_Urls_Task extends Task {
 	 * @param  boolean            $follow_urls Save found URLs to database?
 	 * @return void
 	 */
-	protected function handle_200_response( $static_page, $save_file, $follow_urls ) {
+	public function handle_200_response( $static_page, $save_file, $follow_urls ) {
 		if ( $save_file || $follow_urls ) {
 			Util::debug_log( "Extracting URLs and replacing URLs in the static file" );
 			// Fetch all URLs from the page and add them to the queue...

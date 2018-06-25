@@ -134,4 +134,8 @@ class Options {
 	public function get_destination_url() {
 		return $this->get( 'destination_scheme' ) . $this->get( 'destination_host' );
 	}
+
+	public function get_local_dir() {
+		return $this->get( 'local_dir' );
+	}
 }

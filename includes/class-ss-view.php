@@ -185,8 +185,8 @@ class View {
 			return $file;
 		} else {
 			ob_start();
-		include $file;
-		return ob_get_clean();
+			include $file;
+			return ob_get_clean();
 		}
 
 	}

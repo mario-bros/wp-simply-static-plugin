@@ -55,6 +55,7 @@ class Url_Fetcher {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 			self::$instance->archive_dir = Options::instance()->get_archive_dir();
+			self::$instance->local_dir = Options::instance()->get_local_dir();
 		}
 
 		return self::$instance;
@@ -67,8 +68,11 @@ class Url_Fetcher {
 	 */
 	public function fetch( Page $static_page ) {
 		$url = $static_page->url;
+		//print_r( $static_page->url ); exit(' $static_page->url bye ');
+		//print_r( $url ); exit(' $url bye ');
 
 		$static_page->last_checked_at = Util::formatted_datetime();
+		//print_r(Util::is_local_url( $url )); exit(' is_local_url? bye '); => true
 
 		// Don't process URLs that don't match the URL of this WordPress installation
 		if ( ! Util::is_local_url( $url ) ) {
@@ -83,7 +87,12 @@ class Url_Fetcher {
 		$temp_filename = wp_tempnam();
 
 		Util::debug_log( "Fetching URL and saving it to: " . $temp_filename );
+
+		//print_r($url); exit(' $url bye ');
 		$response = self::remote_get( $url, $temp_filename );
+
+		//print_r( $response ); exit(' $response bye ');
+		//print_r( $response['body'] ); exit(' $response["body"] bye ');
 
 		$filesize = file_exists( $temp_filename ) ? filesize( $temp_filename ) : 0;
 		Util::debug_log( "Filesize: " . $filesize . ' bytes' );
@@ -116,7 +125,15 @@ class Url_Fetcher {
 
 			if ( $relative_filename !== null ) {
 				$static_page->file_path = $relative_filename;
-				$file_path = $this->archive_dir . $relative_filename;
+				//$file_path = $this->archive_dir . $relative_filename;
+
+				if ( $_POST['input_url_post'] ) {
+					//$local_dir = $this->options->get( 'local_dir' );
+					$file_path = $this->local_dir . $relative_filename;
+				} else {
+					$file_path = $this->archive_dir . $relative_filename;
+				}
+
 				Util::debug_log( "Renaming temp file from " . $temp_filename . " to " . $file_path );
 				rename( $temp_filename, $file_path );
 			} else {
@@ -172,6 +189,12 @@ class Url_Fetcher {
 		}
 
 		$create_dir = wp_mkdir_p( $this->archive_dir . $relative_file_dir );
+		if ( $_POST['input_url_post'] ) {
+			$create_dir = wp_mkdir_p( $this->local_dir . $relative_file_dir );
+		} else {
+			$create_dir = wp_mkdir_p( $this->archive_dir . $relative_file_dir );
+		}
+
 		if ( $create_dir === false ) {
 			Util::debug_log( "Unable to create temporary directory: " . $this->archive_dir . $relative_file_dir );
 			$static_page->set_error_message( 'Unable to create temporary directory' );
@@ -193,6 +216,7 @@ class Url_Fetcher {
 	}
 
 	public static function remote_get( $url, $filename = null ) {
+		//print_r($url); exit(' remote_get -> $url bye ');
 		$basic_auth_digest = Options::instance()->get( 'http_basic_auth_digest' );
 
 		$args = array(
@@ -211,7 +235,10 @@ class Url_Fetcher {
 			$args['headers'] = array( 'Authorization' => 'Basic ' . $basic_auth_digest );
 		}
 
+		//print_r($args); exit(' remote_get -> $args bye ');
 		$response = wp_remote_get( $url, $args );
+		Util::debug_log( "Response body: " . $response['body'] );
+		//print_r($response); exit(' remote_get -> $response bye ');
 		return $response;
 	}
 

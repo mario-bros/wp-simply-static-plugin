@@ -8,6 +8,7 @@ jQuery( document ).ready( function( $ ) {
 	// display the export and activity log on page load
 	display_export_log();
 	display_activity_log();
+	display_post_url_list();
 	initiate_action();
 
 	$( '#sistContainer #generate' ).click( function( e ) {
@@ -43,11 +44,18 @@ jQuery( document ).ready( function( $ ) {
 
 	// where action is one of 'start', 'continue', 'cancel'
 	function send_action_to_archive_manager( action ) {
-		var data = {
+		let data = {
 			'_ajax_nonce': $('#_wpnonce').val(),
 			'action': 'static_archive_action',
 			'perform': action
 		};
+
+		let inputURLPostVal = $('#input_url_post').val();
+		if ( inputURLPostVal != '' ) {
+			//let selectOptionVal = {input_url_post: inputURLPostVal};
+			//data.push(selectOptionVal);
+			data['input_url_post'] = inputURLPostVal;
+		}
 
 		$.post( window.ajaxurl, data, function( response ) {
 			handle_response_from_archive_manager( response );
@@ -113,6 +121,20 @@ jQuery( document ).ready( function( $ ) {
 			$activityLog.html( response.html )
 				.scrollTop( $activityLog.prop( 'scrollHeight' ) );
 		} );
+	}
+
+	function display_post_url_list() {
+		var data = {
+			'_ajax_nonce': $('#_wpnonce').val(),
+			'action': 'render_post_url_list'
+		};
+
+		var $postUrlList = $( '#postUrlList' );
+		$postUrlList.html( "<span class='spinner is-active'></span>" );
+
+		$.post( window.ajaxurl, data, function( response ) {
+			$postUrlList.html( response.html );
+		});
 	}
 
 	// -- AJAX pagination ----------------------------------------------------//

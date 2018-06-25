@@ -95,6 +95,7 @@ class Plugin {
 			add_action( 'wp_ajax_static_archive_action', array( self::$instance, 'static_archive_action' ) );
 			add_action( 'wp_ajax_render_export_log', array( self::$instance, 'render_export_log' ) );
 			add_action( 'wp_ajax_render_activity_log', array( self::$instance, 'render_activity_log' ) );
+			add_action( 'wp_ajax_render_post_url_list', array( self::$instance, 'render_post_url_list' ) );
 
 			// Filters
 			add_filter( 'wp_mail_content_type', array( self::$instance, 'filter_wp_mail_content_type' ) );
@@ -226,6 +227,37 @@ class Plugin {
 		}
 
 		$action = $_POST['perform'];
+		$input_url_post = $_POST['input_url_post'];
+
+		if ($input_url_post != "") {
+
+			Page::query()->delete_all();
+
+			$static_page = Page::query()->find_or_create_by( 'url', $input_url_post );
+			$static_page->set_status_message( __( "Selected File", 'simply-static' ) );
+			$static_page->found_on_id = 0;
+			$static_page->save();
+
+			/*$static_page = new Page;
+			$static_page->id = 1;
+			$static_page->url = $input_url_post;
+			$static_page->created_at = $static_page->updated_at = Util::formatted_datetime();*/
+
+			$success = Url_Fetcher::instance()->fetch( $static_page );
+		}
+
+		//print_r($success); exit(' $success bye ');
+
+		if ($success) {
+
+			$save_file = true;
+			$follow_urls = false;
+			$fetchUrlsTask = new Fetch_Urls_Task;
+			$fetchUrlsTask->handle_200_response( $static_page, $save_file, $follow_urls );
+
+			$this->send_json_response_for_static_archive( 'particular_url' );
+		}
+
 
 		if ( $action === 'start' ) {
 			Util::delete_debug_log();
@@ -236,10 +268,26 @@ class Plugin {
 			$this->archive_creation_job->cancel();
 		}
 
-		$this->send_json_response_for_static_archive( $action );
+		$this->send_json_response_for_particular_url( $action );
 	}
 
+	function send_json_response_for_particular_url( $action ) {
+		$done = true;
+
+		$activity_log_html = $this->view
+			->set_template( '_activity_log' )
+			->assign( 'status_messages', ['success' => "single url fetch done"] )
+			->render_to_string();
+
+		// send json response and die()
+		wp_send_json( array(
+			'action' => $action,
+			'activity_log_html' => $activity_log_html,
+			'done' => $done // $done
+		) );
+	}
 	/**
+	 *
 	 * Render json+html for response to static archive creation
 	 * @return void
 	 */
@@ -315,6 +363,38 @@ class Plugin {
 			->render_to_string();
 
 		// send json response and die()
+		wp_send_json( array(
+			'html' => $content
+		) );
+	}
+
+	public function render_post_url_list() {
+
+		$posts_permalinks = [];
+		$your_custom_query = new \WP_Query( 'posts_per_page=10' );
+		//print_r($your_custom_query); exit(' bye ');
+		//print_r($your_custom_query->have_posts()); exit(' bye ');
+		//print_r($your_custom_query->posts); exit(' bye ');
+
+		foreach ($your_custom_query->posts as $post) {
+			$posts_permalinks[] = get_permalink( $post->ID );
+		}
+		//while( $your_custom_query-have_posts() ) : the_post();
+			//print_r($your_custom_query->post); exit(' bye ');
+			//echo $your_custom_query->post->ID;
+			//print_r( get_permalink( $your_custom_query->post->ID ) ); exit(' bye ');
+
+			//$posts[] = $your_custom_query->post; // print post ID
+			//$posts_permalinks[] = get_permalink( $your_custom_query->post->ID );
+		//endwhile;
+
+		//print_r( $posts_permalink ); exit(' bye ');
+
+		$content = $this->view
+			->set_template( '_post_url_list' )
+			->assign( 'post_list', $posts_permalinks )
+			->render_to_string();
+
 		wp_send_json( array(
 			'html' => $content
 		) );

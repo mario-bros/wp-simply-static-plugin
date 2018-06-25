@@ -15,7 +15,7 @@ class Upgrade_Handler {
 
 	/**
 	 * An instance of the options structure containing all options for this plugin
-	 * @var Simply_Static\Options
+	 * @var Options
 	 */
 	protected static $options = null;
 
