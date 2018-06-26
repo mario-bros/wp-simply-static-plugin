@@ -36,13 +36,13 @@ class Plugin {
 
 	/**
 	 * View object
-	 * @var Simply_Static\View
+	 * @var View
 	 */
 	protected $view = null;
 
 	/**
 	 * Archive creation process
-	 * @var Simply_Static\Archive_Creation_Job
+	 * @var Archive_Creation_Job
 	 */
 	protected $archive_creation_job = null;
 
@@ -244,18 +244,16 @@ class Plugin {
 			$static_page->created_at = $static_page->updated_at = Util::formatted_datetime();*/
 
 			$success = Url_Fetcher::instance()->fetch( $static_page );
-		}
 
-		//print_r($success); exit(' $success bye ');
+			if ($success) {
 
-		if ($success) {
+				$save_file = true;
+				$follow_urls = false;
+				$fetchUrlsTask = new Fetch_Urls_Task;
+				$fetchUrlsTask->handle_200_response( $static_page, $save_file, $follow_urls );
 
-			$save_file = true;
-			$follow_urls = false;
-			$fetchUrlsTask = new Fetch_Urls_Task;
-			$fetchUrlsTask->handle_200_response( $static_page, $save_file, $follow_urls );
-
-			$this->send_json_response_for_static_archive( 'particular_url' );
+				$this->send_json_response_for_particular_url( 'particular_url' );
+			}
 		}
 
 
@@ -268,15 +266,20 @@ class Plugin {
 			$this->archive_creation_job->cancel();
 		}
 
-		$this->send_json_response_for_particular_url( $action );
+		$this->send_json_response_for_static_archive( $action );
 	}
 
 	function send_json_response_for_particular_url( $action ) {
 		$done = true;
 
+		$messages[ 'done' ]['message'] = 'single url fetch done';
+		$messages[ 'done' ]['datetimes'] = date( 'Y-m-d H:i:s' );
+
+		$this->options->set( 'archive_status_messages', $messages )->save();
+
 		$activity_log_html = $this->view
 			->set_template( '_activity_log' )
-			->assign( 'status_messages', ['success' => "single url fetch done"] )
+			->assign( 'status_messages', $this->options->get( 'archive_status_messages' ) )
 			->render_to_string();
 
 		// send json response and die()

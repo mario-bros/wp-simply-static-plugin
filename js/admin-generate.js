@@ -13,7 +13,14 @@ jQuery( document ).ready( function( $ ) {
 
 	$( '#sistContainer #generate' ).click( function( e ) {
 		$( '#sistContainer #activityLog' ).html('');
-		initiate_action( 'start' );
+		//initiate_action( 'start' );
+
+		let inputURLPostVal = $('#input_url_post').val();
+		if ( inputURLPostVal != '' ) {
+			send_option_to_archive_manager( 'particular_url' );
+		} else {
+			initiate_action( 'start' );
+		}
 	} );
 
 	$( '#sistContainer #cancel' ).click( function( e ) {
@@ -33,17 +40,20 @@ jQuery( document ).ready( function( $ ) {
 		if ( refreshTimer != null ) {
 			clearInterval( refreshTimer );
 		}
+
 		// send action now
 		send_action_to_archive_manager( action );
 
 		// set loop for pinging server
-		//refreshTimer = setInterval( function() {
-			//send_action_to_archive_manager( 'ping' );
-		//}, REFRESH_EVERY_X_SECONDS * 1000 );
+		refreshTimer = setInterval( function() {
+			send_action_to_archive_manager( 'ping' );
+		}, REFRESH_EVERY_X_SECONDS * 1000 );
 	}
 
-	// where action is one of 'start', 'continue', 'cancel'
-	function send_action_to_archive_manager( action ) {
+	function send_option_to_archive_manager( action ) {
+		$( '#sistContainer .actions input' ).attr( 'disabled', 'disabled' );
+		$( '#sistContainer .actions .spinner' ).addClass( 'is-active' );
+
 		let data = {
 			'_ajax_nonce': $('#_wpnonce').val(),
 			'action': 'static_archive_action',
@@ -55,7 +65,21 @@ jQuery( document ).ready( function( $ ) {
 			//let selectOptionVal = {input_url_post: inputURLPostVal};
 			//data.push(selectOptionVal);
 			data['input_url_post'] = inputURLPostVal;
+			alert(' hoi');
 		}
+
+		$.post( window.ajaxurl, data, function( response ) {
+			handle_response_from_archive_manager( response );
+		} );
+	}
+
+	// where action is one of 'start', 'continue', 'cancel'
+	function send_action_to_archive_manager( action ) {
+		let data = {
+			'_ajax_nonce': $('#_wpnonce').val(),
+			'action': 'static_archive_action',
+			'perform': action
+		};
 
 		$.post( window.ajaxurl, data, function( response ) {
 			handle_response_from_archive_manager( response );
@@ -68,8 +92,11 @@ jQuery( document ).ready( function( $ ) {
 		var $activityLog = $( '#activityLog' );
 		$activityLog.html( response.activity_log_html )
 			.scrollTop( $activityLog.prop( 'scrollHeight' ) );
+
+		//console.log(response);
 		if ( response.done == true && done == false ) {
 			display_export_log();
+			//alert(' selesai ');
 		}
 
 		done = response.done;
