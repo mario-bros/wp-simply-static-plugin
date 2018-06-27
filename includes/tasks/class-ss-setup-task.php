@@ -41,9 +41,16 @@ class Setup_Task extends Task {
 		// ->where( 'http_status_code IS NULL OR http_status_code NOT IN (?)', implode( ',', Page::$processable_status_codes ) )
 		// ->delete_all();
 
-		// add origin url and additional urls/files to database
-		self::skip_origin_add_additional_urls_to_db( $this->options->get( 'additional_urls' ) );
-		//self::add_origin_and_additional_urls_to_db( $this->options->get( 'additional_urls' ) );
+		// add origin url or additional urls/files to database
+		$additional_urls_opt = $this->options->get( 'additional_urls' );
+		$additional_urls_array = array_unique( Util::string_to_array( $additional_urls_opt ) );
+
+		if ( count($additional_urls_array) > 0) {
+			self::skip_origin_add_additional_urls_to_db( $this->options->get( 'additional_urls' ) );
+		} else {
+			self::add_origin_and_additional_urls_to_db( $this->options->get( 'additional_urls' ) );
+		}
+
 		self::add_additional_files_to_db( $this->options->get( 'additional_files' ) );
 
 		return true;

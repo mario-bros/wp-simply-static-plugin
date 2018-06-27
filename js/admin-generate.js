@@ -8,19 +8,13 @@ jQuery( document ).ready( function( $ ) {
 	// display the export and activity log on page load
 	display_export_log();
 	display_activity_log();
-	display_post_url_list();
+	//display_post_url_list();
 	initiate_action();
 
 	$( '#sistContainer #generate' ).click( function( e ) {
 		$( '#sistContainer #activityLog' ).html('');
-		//initiate_action( 'start' );
+		initiate_action( 'start' );
 
-		let inputURLPostVal = $('#input_url_post').val();
-		if ( inputURLPostVal != '' ) {
-			send_option_to_archive_manager( 'particular_url' );
-		} else {
-			initiate_action( 'start' );
-		}
 	} );
 
 	$( '#sistContainer #cancel' ).click( function( e ) {
@@ -60,13 +54,12 @@ jQuery( document ).ready( function( $ ) {
 			'perform': action
 		};
 
-		let inputURLPostVal = $('#input_url_post').val();
+		/*let inputURLPostVal = $('#input_url_post').val();
 		if ( inputURLPostVal != '' ) {
 			//let selectOptionVal = {input_url_post: inputURLPostVal};
 			//data.push(selectOptionVal);
 			data['input_url_post'] = inputURLPostVal;
-			alert(' hoi');
-		}
+		}*/
 
 		$.post( window.ajaxurl, data, function( response ) {
 			handle_response_from_archive_manager( response );

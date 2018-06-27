@@ -16,11 +16,6 @@ namespace Simply_Static;
 		<span class='spinner <?php if ( ! $this->archive_generation_done ) { echo 'is-active'; } ?>'></span>
 	</div>
 
-	<h3><?php _e( "Post Url List", 'simply-static' ); ?></h3>
-	<div id='postUrlList'>
-		<?php echo $this->post_url_list; ?>
-	</div>
-
 	<h3><?php _e( "Activity Log", 'simply-static' ); ?></h3>
 	<div id='activityLog'>
 		<?php echo $this->activity_log; ?>

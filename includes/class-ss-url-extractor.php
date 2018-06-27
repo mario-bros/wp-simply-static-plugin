@@ -160,11 +160,7 @@ class Url_Extractor {
 	 */
 	public function extract_and_update_urls() {
 		if ( $this->static_page->is_type( 'html' ) ) {
-
-			if ($this->static_page->status_message == "Additional URL") {
-				Util::debug_log( "This particular page is html and included in Additional URL" );
-				$this->save_body( $this->extract_and_replace_urls_in_html() );
-			}
+			$this->save_body( $this->extract_and_replace_urls_in_html() );
 		}
 
 		if ( $this->static_page->is_type( 'css' ) ) {

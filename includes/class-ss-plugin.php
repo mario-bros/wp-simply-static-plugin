@@ -228,8 +228,6 @@ class Plugin {
 
 		$action = $_POST['perform'];
 
-		//http://localhost/crack/2018/06/23/hello-world/
-
 		if ( $action === 'start' ) {
 			Util::delete_debug_log();
 			Util::debug_log( "Received request to start generating a static archive" );
@@ -242,26 +240,6 @@ class Plugin {
 		$this->send_json_response_for_static_archive( $action );
 	}
 
-	function send_json_response_for_particular_url( $action ) {
-		$done = true;
-
-		$messages[ 'done' ]['message'] = 'single url fetch done';
-		$messages[ 'done' ]['datetimes'] = date( 'Y-m-d H:i:s' );
-
-		$this->options->set( 'archive_status_messages', $messages )->save();
-
-		$activity_log_html = $this->view
-			->set_template( '_activity_log' )
-			->assign( 'status_messages', $this->options->get( 'archive_status_messages' ) )
-			->render_to_string();
-
-		// send json response and die()
-		wp_send_json( array(
-			'action' => $action,
-			'activity_log_html' => $activity_log_html,
-			'done' => $done // $done
-		) );
-	}
 	/**
 	 *
 	 * Render json+html for response to static archive creation
@@ -348,23 +326,10 @@ class Plugin {
 
 		$posts_permalinks = [];
 		$your_custom_query = new \WP_Query( 'posts_per_page=10' );
-		//print_r($your_custom_query); exit(' bye ');
-		//print_r($your_custom_query->have_posts()); exit(' bye ');
-		//print_r($your_custom_query->posts); exit(' bye ');
 
 		foreach ($your_custom_query->posts as $post) {
 			$posts_permalinks[] = get_permalink( $post->ID );
 		}
-		//while( $your_custom_query-have_posts() ) : the_post();
-			//print_r($your_custom_query->post); exit(' bye ');
-			//echo $your_custom_query->post->ID;
-			//print_r( get_permalink( $your_custom_query->post->ID ) ); exit(' bye ');
-
-			//$posts[] = $your_custom_query->post; // print post ID
-			//$posts_permalinks[] = get_permalink( $your_custom_query->post->ID );
-		//endwhile;
-
-		//print_r( $posts_permalink ); exit(' bye ');
 
 		$content = $this->view
 			->set_template( '_post_url_list' )

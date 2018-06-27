@@ -124,10 +124,6 @@ class Url_Fetcher {
 			if ( $relative_filename !== null ) {
 				$static_page->file_path = $relative_filename;
 
-				/*$local_file_path = $this->local_dir . $relative_filename;
-				Util::debug_log( "Renaming temp file from " . $temp_filename . " to local folder => " . $local_file_path );
-				rename( $temp_filename, $local_file_path );*/
-
 				$file_path = $this->archive_dir . $relative_filename;
 				Util::debug_log( "Renaming temp file from " . $temp_filename . " to " . $file_path );
 				rename( $temp_filename, $file_path );
