@@ -136,9 +136,11 @@ class Url_Extractor {
 	 * @return int|false
 	 */
 	public function save_body( $content ) {
-		/*Util::debug_log($this->static_page->file_path);
 
-		if ( md5($content) != md5($this->get_body()) ) {
+		//Util::debug_log($this->options->get_archive_dir());
+		//Util::debug_log($this->static_page->file_path);
+
+		/*if ( md5($content) != md5($this->get_body()) ) {
 			return file_put_contents( $this->options->get_archive_dir() . $this->static_page->file_path, $content );
 		}*/
 		return file_put_contents( $this->options->get_archive_dir() . $this->static_page->file_path, $content );
@@ -158,7 +160,11 @@ class Url_Extractor {
 	 */
 	public function extract_and_update_urls() {
 		if ( $this->static_page->is_type( 'html' ) ) {
-			$this->save_body( $this->extract_and_replace_urls_in_html() );
+
+			if ($this->static_page->status_message == "Additional URL") {
+				Util::debug_log( "This particular page is html and included in Additional URL" );
+				$this->save_body( $this->extract_and_replace_urls_in_html() );
+			}
 		}
 
 		if ( $this->static_page->is_type( 'css' ) ) {
@@ -233,6 +239,9 @@ class Url_Extractor {
 		}
 
 		foreach ( $attributes as $attribute_name ) {
+
+			//Util::debug_log( "Attribute name on this static page: " . $attribute_name);
+
 			if ( isset( $tag->$attribute_name ) ) {
 				$extracted_urls = array();
 				$attribute_value = $tag->$attribute_name;
@@ -246,6 +255,9 @@ class Url_Extractor {
 				}
 
 				foreach ( $extracted_urls as $extracted_url ) {
+
+					//Util::debug_log( "Extracted URLs found on this static page: " . $extracted_url);
+
 					if ( $extracted_url !== '' ) {
 						$updated_extracted_url = $this->add_to_extracted_urls( $extracted_url );
 						$attribute_value = str_replace( $extracted_url, $updated_extracted_url, $attribute_value );
@@ -280,6 +292,9 @@ class Url_Extractor {
 
 		// return the original html string if dom is blank or boolean (unparseable)
 		if ( $dom == '' || is_bool( $dom ) ) {
+
+			Util::debug_log( "This static page is unparseable");
+
 			return $html_string;
 		} else {
 			// handle tags with attributes
@@ -300,8 +315,6 @@ class Url_Extractor {
 				$tag->innertext = $updated_css;
 			}
 
-			//Util::debug_log( $dom->save() );
-			//print_r($dom->save()); exit(' bye ');
 			return $dom->save();
 		}
 	}

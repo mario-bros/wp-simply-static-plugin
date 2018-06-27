@@ -88,7 +88,6 @@ class Url_Fetcher {
 
 		Util::debug_log( "Fetching URL and saving it to: " . $temp_filename );
 
-		//print_r($url); exit(' $url bye ');
 		$response = self::remote_get( $url, $temp_filename );
 
 		//print_r( $response ); exit(' $response bye ');
@@ -99,7 +98,6 @@ class Url_Fetcher {
 
 		if ( is_wp_error( $response ) ) {
 			Util::debug_log( "We encountered an error when fetching: " . $response->get_error_message() );
-			Util::debug_log( $response );
 			$static_page->http_status_code = null;
 			$message = sprintf( __( "An error occurred: %s", 'simply-static' ), $response->get_error_message() );
 			$static_page->set_error_message( $message );
@@ -125,17 +123,15 @@ class Url_Fetcher {
 
 			if ( $relative_filename !== null ) {
 				$static_page->file_path = $relative_filename;
-				//$file_path = $this->archive_dir . $relative_filename;
 
-				if ( $_POST['input_url_post'] ) {
-					//$local_dir = $this->options->get( 'local_dir' );
-					$file_path = $this->local_dir . $relative_filename;
-				} else {
-					$file_path = $this->archive_dir . $relative_filename;
-				}
+				/*$local_file_path = $this->local_dir . $relative_filename;
+				Util::debug_log( "Renaming temp file from " . $temp_filename . " to local folder => " . $local_file_path );
+				rename( $temp_filename, $local_file_path );*/
 
+				$file_path = $this->archive_dir . $relative_filename;
 				Util::debug_log( "Renaming temp file from " . $temp_filename . " to " . $file_path );
 				rename( $temp_filename, $file_path );
+
 			} else {
 				Util::debug_log( "We weren't able to establish a filename; deleting temp file" );
 				unlink( $temp_filename );
@@ -237,8 +233,6 @@ class Url_Fetcher {
 
 		//print_r($args); exit(' remote_get -> $args bye ');
 		$response = wp_remote_get( $url, $args );
-		Util::debug_log( "Response body: " . $response['body'] );
-		//print_r($response); exit(' remote_get -> $response bye ');
 		return $response;
 	}
 

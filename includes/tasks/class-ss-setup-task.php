@@ -42,10 +42,24 @@ class Setup_Task extends Task {
 		// ->delete_all();
 
 		// add origin url and additional urls/files to database
-		self::add_origin_and_additional_urls_to_db( $this->options->get( 'additional_urls' ) );
+		self::skip_origin_add_additional_urls_to_db( $this->options->get( 'additional_urls' ) );
+		//self::add_origin_and_additional_urls_to_db( $this->options->get( 'additional_urls' ) );
 		self::add_additional_files_to_db( $this->options->get( 'additional_files' ) );
 
 		return true;
+	}
+
+	public static function skip_origin_add_additional_urls_to_db( $additional_urls ) {
+		$urls = array_unique( Util::string_to_array( $additional_urls ) );
+		foreach ( $urls as $url ) {
+			if ( Util::is_local_url( $url ) ) {
+				Util::debug_log( 'Adding additional URL to queue: ' . $url );
+				$static_page = Page::query()->find_or_initialize_by( 'url', $url );
+				$static_page->set_status_message( __( "Additional URL", 'simply-static' ) );
+				$static_page->found_on_id = 0;
+				$static_page->save();
+			}
+		}
 	}
 
 	/**

@@ -227,35 +227,8 @@ class Plugin {
 		}
 
 		$action = $_POST['perform'];
-		$input_url_post = $_POST['input_url_post'];
 
-		if ($input_url_post != "") {
-
-			Page::query()->delete_all();
-
-			$static_page = Page::query()->find_or_create_by( 'url', $input_url_post );
-			$static_page->set_status_message( __( "Selected File", 'simply-static' ) );
-			$static_page->found_on_id = 0;
-			$static_page->save();
-
-			/*$static_page = new Page;
-			$static_page->id = 1;
-			$static_page->url = $input_url_post;
-			$static_page->created_at = $static_page->updated_at = Util::formatted_datetime();*/
-
-			$success = Url_Fetcher::instance()->fetch( $static_page );
-
-			if ($success) {
-
-				$save_file = true;
-				$follow_urls = false;
-				$fetchUrlsTask = new Fetch_Urls_Task;
-				$fetchUrlsTask->handle_200_response( $static_page, $save_file, $follow_urls );
-
-				$this->send_json_response_for_particular_url( 'particular_url' );
-			}
-		}
-
+		//http://localhost/crack/2018/06/23/hello-world/
 
 		if ( $action === 'start' ) {
 			Util::delete_debug_log();

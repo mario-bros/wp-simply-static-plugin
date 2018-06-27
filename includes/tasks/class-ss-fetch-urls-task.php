@@ -39,7 +39,7 @@ class Fetch_Urls_Task extends Task {
 		while ( $static_page = array_shift( $static_pages ) ) {
 			Util::debug_log( "URL: " . $static_page->url );
 
-			$excludable = $this->find_excludable( $static_page );
+			$excludable = $this->find_excludable( $static_page ); //~> depend on options
 			if ( $excludable !== false ) {
 				$save_file = $excludable['do_not_save'] !== '1';
 				$follow_urls = $excludable['do_not_follow'] !== '1';
@@ -49,6 +49,11 @@ class Fetch_Urls_Task extends Task {
 				$follow_urls = true;
 				Util::debug_log( "URL is not being excluded" );
 			}
+
+			/*if ( $static_page->url == 'http://localhost/crack/' ) {
+				$save_file = false;
+				$follow_urls = false;
+			}*/
 
 			// If we're not saving a copy of the page or following URLs on that
 			// page, then we don't need to bother fetching it.
@@ -101,11 +106,32 @@ class Fetch_Urls_Task extends Task {
 			$extractor = new Url_Extractor( $static_page );
 			$urls = $extractor->extract_and_update_urls();
 		}
+		//http://localhost/crack/2018/06/23/hello-world/
 
 		if ( $follow_urls ) {
-			Util::debug_log( "Adding " . sizeof( $urls ) . " URLs to the queue" );
+
+			//Util::debug_log( "Adding " . sizeof( $urls ) . " URLs to the queue" );
+
+			# WE MUST FILTER EXTRACTED URLs before continue #
+			$filteredURLs = array();
+
 			foreach ( $urls as $url ) {
-				$this->set_url_found_on( $static_page, $url );
+				if ( substr($url, -1) == '/' && ($url == "http://localhost/crack/2018/06/23/hello-world/")) {
+					$filteredURLs[] = $url;
+				} elseif ( substr($url, -1) != '/' ) {
+					$filteredURLs[] = $url;
+				}
+
+			}
+
+			foreach ( $filteredURLs as $url ) {
+				Util::debug_log( "URL path found : " . $url );
+				/*if ($static_page->status_message == "Additional URL" && ( substr($url, -1) == '/' ) && ( $url != "http://localhost/crack/2018/06/23/hello-world/" )) {
+					$this->set_url_found_on( $static_page, $url ); // ~> set to DB.`wp_simply_static_pages`
+				}*/
+
+				$this->set_url_found_on( $static_page, $url ); // ~> set to DB.`wp_simply_static_pages`
+
 			}
 		} else {
 			Util::debug_log( "Not following URLs from this page" );
